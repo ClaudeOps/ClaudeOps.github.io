@@ -6,13 +6,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-	  <script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<script>
 function changeRecommendation() {
 	var e = document.getElementById("selecttype");
 	var f = document.getElementById("reccount")
-  	if (Number(f.value) > 0) {
+	if (Number(f.value) > 0) {
 		var answer = (e.value) * (f.value);
 	} else {
 		var answer = 0
@@ -20,12 +20,12 @@ function changeRecommendation() {
 	
 	document.getElementById("amznrec").innerHTML = answer
 }
-	  </script>
-	  <script>
+</script>
+<script>
 function changeActual() {
 	var total = 0
-  	var all = document.getElementsByName("actualCountTextInput")
-  	for (var i = all.length; i--; ) {
+	var all = document.getElementsByName("actualCountTextInput")
+	for (var i = all.length; i--; ) {
 		var e = all[i];
 		if (Number(e.value) > 0) {
 			var factor = 0
@@ -71,23 +71,29 @@ function changeActual() {
 	
 	document.getElementById("currentcount").innerHTML = total
 }
-	  </script>
-	  <script>
+</script>
+<script>
 function resetForm() {
-  	document.getElementById("acctUnits").reset();
-  	var total= 0;
-  	document.getElementById("currentcount").innerHTML = total
+	document.getElementById("acctUnits").reset();
+	document.getElementById("amznrecform").reset();
+	document.getElementById("currentcount").innerHTML = 0
 }
-	  </script>
+</script>
+<script>
+function init() {
+	document.getElementById("currentcount").innerHTML = 0
+	document.getElementById("amznrec").innerHTML = 0
+}
+</script>
 </head>
-<body>
+<body  onload="init()">
 	<nav class="navbar navbar-inverse">
 		<div class="container-fluid">
 			<div class="navbar-header">
 				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><span class="icon-bar"></span>
-			        <span class="icon-bar"></span>
-			        <span class="icon-bar"></span></button>
-			      <a class="navbar-brand" href="#">Colby's RI Normalization Calculator</a></div>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span></button>
+				<a class="navbar-brand" href="#">Colby's RI Normalization Calculator</a></div>
 			
 			<div class="collapse navbar-collapse" id="myNavbar">
 				<ul class="nav navbar-nav">
@@ -98,7 +104,7 @@ function resetForm() {
 	</nav>
 	
 	<div class="container" style="background-color:pink;">
-		<div classs="row">
+		<div class="row" style="background-color: pink;">
 			<br />
 			
 			<br />
@@ -108,8 +114,8 @@ function resetForm() {
 		
 		<div class="row">
 			<div class="col-md-4">
-				<form>
-					<fieldset>	
+				<form id="amznrecform">
+					<fieldset>
 						<!-- Form Name -->
 						<legend>Amazon Recommendation</legend>
 						
@@ -157,7 +163,7 @@ function resetForm() {
 							<label class="control-label" for="reccount">Recommended Instance Purchase Count</label>
 							
 							<div>
-								<input id="reccount" name="reccount" type="text" placeholder="0" class="form-control input-md text-right" size="4"  onchange="changeRecommendation()">
+								<input id="reccount" name="reccount" type="text" value="0" class="form-control input-md text-right" size="4"  onchange="changeRecommendation()">
 							</div>
 						</div>
 					</fieldset>
@@ -174,82 +180,82 @@ function resetForm() {
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">Nano:</span>
 							
-						<input id="size-nano" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-nano" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">Micro:</span>
 							
-						<input id="size-micro" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-micro" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">Small:</span>
 							
-						<input id="size-small" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-small" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">Medium:</span>
 							
-						<input id="size-medium" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-medium" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">Large:</span>
 							
-						<input id="size-large" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-large" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">xLarge:</span>
 							
-						<input id="size-xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-xlarge" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">2xLarge:</span>
 							
-						<input id="size-2xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-2xlarge" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">4xLarge:</span>
 							
-						<input id="size-4xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-4xlarge" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">8xLarge:</span>
 							
-						<input id="size-8xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-8xlarge" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">9xLarge:</span>
 							
-						<input id="size-9xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-9xlarge" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">10xLarge:</span>
 							
-						<input id="size-10xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-10xlarge" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">12xLarge:</span>
 							
-						<input id="size-12xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-12xlarge" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">16xLarge:</span>
 							
-						<input id="size-16xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()" size="4"><span class="input-group-addon">instances</span></div>
+						<input id="size-16xlarge" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">18xLarge:</span>
 							
-						<input id="size-18xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-18xlarge" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">24xLarge:</span>
 							
-						<input id="size-24xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-24xlarge" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 						
 						<!-- Text input-->
 						<div class="input-group"><span class="input-group-addon" style="width: 100px;">32xLarge:</span>
 							
-						<input id="size-32xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						<input id="size-32xlarge" name="actualCountTextInput" type="text" value="0" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
 					</fieldset>
 				</form>
 			</div>
@@ -271,6 +277,7 @@ function resetForm() {
 			<div class="col-md-2">
 				<button type="button" class="btn btn-success">Calculate</button>
 			</div>
+			
 			<div class="col-md-2">
 				<button type="button" class="btn btn-warning" onclick="resetForm()">Reset</button>
 			</div>
