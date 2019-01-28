@@ -1,0 +1,279 @@
+<head>
+	<title>Colby's RI Normalization Calculator</title>
+	
+	<meta charset="utf-8">
+	
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+	  <script>
+function changeRecommendation() {
+	var e = document.getElementById("selecttype");
+	var f = document.getElementById("reccount")
+  	if (Number(f.value) > 0) {
+		var answer = (e.value) * (f.value);
+	} else {
+		var answer = 0
+	}
+	
+	document.getElementById("amznrec").innerHTML = answer
+}
+	  </script>
+	  <script>
+function changeActual() {
+	var total = 0
+  	var all = document.getElementsByName("actualCountTextInput")
+  	for (var i = all.length; i--; ) {
+		var e = all[i];
+		if (Number(e.value) > 0) {
+			var factor = 0
+			switch (e.id) {
+				case 'size-nano':     factor = 0.25;
+					break;
+				case 'size-micro':    factor = 0.5;
+					break;
+				case 'size-small':    factor = 1;
+					break;
+				case 'size-medium':   factor = 2;
+					break;
+				case 'size-large':    factor = 4;
+					break;
+				case 'size-xlarge':   factor = 8;
+					break;
+				case 'size-2xlarge':  factor = 16;
+					break;
+				case 'size-4xlarge':  factor = 32;
+					break;
+				case 'size-8xlarge':  factor = 64;
+					break;
+				case 'size-9xlarge':  factor = 72;
+					break;
+				case 'size-10xlarge': factor = 80;
+					break;
+				case 'size-12xlarge': factor = 96;
+					break;
+				case 'size-16xlarge': factor = 128;
+					break;
+				case 'size-18xlarge': factor = 144;
+					break;
+				case 'size-24xlarge': factor = 192;
+					break;
+				case 'size-32xlarge': factor = 256;
+					break;
+				default: factor = 0;
+			}
+			
+			total = total + (Number(e.value) * factor);
+		}
+	}
+	
+	document.getElementById("currentcount").innerHTML = total
+}
+	  </script>
+	  <script>
+function resetForm() {
+  	document.getElementById("acctUnits").reset();
+  	var total= 0;
+  	document.getElementById("currentcount").innerHTML = total
+}
+	  </script>
+</head>
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar"><span class="icon-bar"></span>
+			        <span class="icon-bar"></span>
+			        <span class="icon-bar"></span></button>
+			      <a class="navbar-brand" href="#">Colby's RI Normalization Calculator</a></div>
+			
+			<div class="collapse navbar-collapse" id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">Home</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<div class="container" style="background-color:pink;">
+		<div classs="row">
+			<br />
+			
+			<br />
+			
+			<br />
+		</div>
+		
+		<div class="row">
+			<div class="col-md-4">
+				<form>
+					<fieldset>	
+						<!-- Form Name -->
+						<legend>Amazon Recommendation</legend>
+						
+						<!-- Select Basic -->
+						<div class="form-group">
+							<label class="control-label" for="selecttype">Recommended Instance Type</label>
+							
+							<select id="selecttype" name="selecttype" class="form-control" onchange="changeRecommendation()">
+								<option value="0.25">nano</option>
+								
+								<option value="0.5">micro</option>
+								
+								<option value="1">small</option>
+								
+								<option value="2">medium</option>
+								
+								<option value="4">large</option>
+								
+								<option value="8">xlarge</option>
+								
+								<option value="16">2xlarge</option>
+								
+								<option value="32">4xlarge</option>
+								
+								<option value="64">8xlarge</option>
+								
+								<option value="72">9xlarge</option>
+								
+								<option value="80">10xlarge</option>
+								
+								<option value="96">12xlarge</option>
+								
+								<option value="128">16xlarge</option>
+								
+								<option value="144">18xlarge</option>
+								
+								<option value="192">24xlarge</option>
+								
+								<option value="256">32xlarge</option>
+							</select>
+						</div>
+						
+						<!-- Text input-->
+						<div class="form-group">
+							<label class="control-label" for="reccount">Recommended Instance Purchase Count</label>
+							
+							<div>
+								<input id="reccount" name="reccount" type="text" placeholder="0" class="form-control input-md text-right" size="4"  onchange="changeRecommendation()">
+							</div>
+						</div>
+					</fieldset>
+				</form>
+			</div>
+			
+			<div class="col-md-8">
+				<form class="form-horizontal" style="background-color:pink;" id="acctUnits">
+					<fieldset>
+						
+						<!-- Form Name -->
+						<legend>Current Account Instances</legend>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">Nano:</span>
+							
+						<input id="size-nano" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">Micro:</span>
+							
+						<input id="size-micro" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">Small:</span>
+							
+						<input id="size-small" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">Medium:</span>
+							
+						<input id="size-medium" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">Large:</span>
+							
+						<input id="size-large" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">xLarge:</span>
+							
+						<input id="size-xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">2xLarge:</span>
+							
+						<input id="size-2xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">4xLarge:</span>
+							
+						<input id="size-4xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">8xLarge:</span>
+							
+						<input id="size-8xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">9xLarge:</span>
+							
+						<input id="size-9xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">10xLarge:</span>
+							
+						<input id="size-10xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">12xLarge:</span>
+							
+						<input id="size-12xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">16xLarge:</span>
+							
+						<input id="size-16xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()" size="4"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">18xLarge:</span>
+							
+						<input id="size-18xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">24xLarge:</span>
+							
+						<input id="size-24xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+						
+						<!-- Text input-->
+						<div class="input-group"><span class="input-group-addon" style="width: 100px;">32xLarge:</span>
+							
+						<input id="size-32xlarge" name="actualCountTextInput" type="text" placeholder="count" class="form-control text-right" onchange="changeActual()"><span class="input-group-addon">instances</span></div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-4">
+				<button type="button" class="btn btn-primary">Amazon RI Recommended Units: <span class="badge">
+					<div id="amznrec"></div>
+				</span></button>
+			</div>
+			
+			<div class="col-md-4">
+				<button type="button" class="btn btn-primary">Current Units Used in Account: <span class="badge">
+					<div id="currentcount"></div>
+				</span></button>
+			</div>
+			
+			<div class="col-md-2">
+				<button type="button" class="btn btn-success">Calculate</button>
+			</div>
+			<div class="col-md-2">
+				<button type="button" class="btn btn-warning" onclick="resetForm()">Reset</button>
+			</div>
+		</div>
+	</div>
+</body>
